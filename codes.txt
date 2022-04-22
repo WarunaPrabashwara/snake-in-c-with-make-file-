@@ -1,0 +1,57 @@
+me pahala tyenne  eka character ekk witharak ganna kramaya 
+
+
+testTerminal.c
+
+
+#include<stdio.h>
+#include<stdlib.h>
+#include"terminal.h"
+
+int main()
+{
+	char c ;
+	disableBuffer();
+	scanf(" %c" , &c ) ;
+	enableBuffer();
+	printf("the  char is : %c\n" , c ) ;
+	return 0 ;
+}
+
+
+
+
+
+
+
+
+me tyenne terminal.c 
+terminal.h kiyala eka change karaganna widiha kohomada kiyala balanna wenwa . mokada uda ekata eeka import karanwa 
+
+terminal.c
+
+
+
+#include<stdio.h>
+#include<termios.h>
+#include"terminal.h"
+
+void disableBuffer()
+{
+	struct termios mode ;
+	tcgetattr(0 , &mode);
+	mode.c_lflag &= ~(ECHO | ICANON ) ;
+	tcsetattr(0 , TCSANOW , &mode ) ;
+}
+
+void enableBuffer()
+{
+	struct termios mode ; 
+	tcgetattr(0 , &mode ) ;
+	mode.c_lflag |= (ECHO | ICANON ); 
+	tcsetattr( 0 , TCSANOW , &mode ); 
+}
+
+
+
+
